@@ -6,10 +6,10 @@ import  {
 
 import upload from "../middleware/multer.middleware.js"
 import {verifyToken} from "../middleware/authMiddleware.js"
-import { get } from "http";
+
 const router = Router()
 
-router.route("/rigester").post(
+router.route("/register").post(
     upload.fields([
         {
             name : "avatar",

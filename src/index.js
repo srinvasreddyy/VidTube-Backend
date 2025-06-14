@@ -5,7 +5,7 @@ import DBconnection from "./db/index.js";
 dotenv.config({
     path : "C:\Users\ADMIN\Desktop\Backend-project\.env"
 })      
-const PORT = process.env.PORT || 8000;
+const PORT =8000;
 
 DBconnection()
 .then(()=>{

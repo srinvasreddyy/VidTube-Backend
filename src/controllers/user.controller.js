@@ -33,10 +33,7 @@ const rigesterUser = asyncHandler(async (req, res) => {
 
     if (existedUser) {
         throw new ApiError(401, "user already exists ");
-
     }
-
-
     // Handling the image that comes from the req.files
     const avatarLocalpath = req.files?.avatar?.[0]?.path
     const coverLocalpath = req.files?.coverImage?.[0]?.path
@@ -47,6 +44,7 @@ const rigesterUser = asyncHandler(async (req, res) => {
 
     const avatar = await uploadOnCloudinary(avatarLocalpath)
     const coverImage = await uploadOnCloudinary(coverLocalpath)
+    console.log(avatar, coverImage)
     if (!coverImage) {
         console.log("error\n")
     }
