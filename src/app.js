@@ -24,10 +24,8 @@ app.use(cookieParser())   //this will handle cookies
 //import router ( in route files we exported as default so we can import any name we want )
 import healthcheckRouter from "./routes/healthcheck.route.js";
 import userRouter from "./routes/user.route.js";
-
 //routes
 app.use("/api/v1/healthcheck",healthcheckRouter)
 app.use("/api/v1/user",userRouter)
-
 
 export {app}

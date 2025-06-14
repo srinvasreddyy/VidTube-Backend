@@ -1,15 +1,4 @@
-/**
- *   videoId : string pk
-  videoURL : string 
-  isPublished : boolean
-  postedBy : objectId user
-  duration : number 
-  created : date
-  modified : date
-  views : number
-  likes : number
-  description : string
- */
+
 import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
@@ -32,7 +21,7 @@ const videoSchema = mongoose.Schema({
         type : Boolean,
         default : true
     },
-    postedBy :{
+    ownerId :{
         type : Schema.Types.ObjectId,
         ref : "User"
     },
@@ -58,6 +47,6 @@ const videoSchema = mongoose.Schema({
 
 videoSchema.plugin(mongooseAggregatePaginate)
 
-const Videos = mongoose.model("Videos",videoSchema)
+const Videos = mongoose.model("Video",videoSchema)
 
 export default Videos
