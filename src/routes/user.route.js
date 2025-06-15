@@ -25,6 +25,10 @@ router.route("/register").post(
 router.route("/login").post(
     loginUser
 )
+router.route("/updatePassword").patch(
+    verifyToken,
+    updatePassword
+)
 router.route("/refreshToken").post(
     refreshAccessToken
 )
@@ -45,10 +49,7 @@ router.route("/updateCoverImage").patch(
 router.route("/updateAccountDetails").patch(
     verifyToken,updateAccountDetails
 )
-router.route("/updatePassword").patch(
-    verifyToken,
-    updatePassword
-)
+
 router.route("/getUserdetails").get(
     verifyToken,
     getCurrentUser
