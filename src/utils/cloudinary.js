@@ -15,7 +15,7 @@ cloudinary.config({
 
 const uploadOnCloudinary = async function (filepath) {
   try {
-    if (!filepath) return new ApiError(400, "File not found");
+    if (!filepath) throw new ApiError(400, "File not found");
 
     const response = await cloudinary.uploader.upload(filepath, {
       resource_type: "auto"

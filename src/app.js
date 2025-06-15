@@ -15,7 +15,7 @@ app.use(express.json({
 }))
 
 app.use(express.urlencoded({
-    limit:"10000kb", //data intake should be not more than 100kb from the url
+    limit:"10000kb", //data intake should be not more than 10000kb from the url
     extended: true  //handles the complex data 
 }))
 app.use(express.static("public")) //serve extra files from public named directory

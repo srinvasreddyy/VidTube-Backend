@@ -15,13 +15,13 @@ const uploadVideo = asyncHandler(async (req, res) => {
     console.log(req.body);
 
     if (!title || !description) {
-        throw new ApiError(400, "All fields are requried")
+        throw new ApiError(400, "All fields are required")
     }
     if (title.length < 10 || title.length > 30) {
         throw new ApiError(400, "Title should be greater than 10 character and less than 30 character")
     }
     if (description.length < 20 || description.length > 200) {
-        throw new ApiError(400, "Description should be greater than 20 character and less than 200 characterz")
+        throw new ApiError(400, "Description should be greater than 20 characters and less than 200 characters")
     }
 
     const uploadedVideo = req.file?.path
@@ -31,7 +31,7 @@ const uploadVideo = asyncHandler(async (req, res) => {
 
     const newVideo = await Videos.create({
         title: title,
-        videoURL: publishedVideo.url,
+        videoURL: publishedVideo.secure_url,
         isPublished: true,
         ownerId: user._id,
         duration: publishedVideo.duration,
@@ -47,7 +47,7 @@ const uploadVideo = asyncHandler(async (req, res) => {
 })
 
 const getVideos = asyncHandler(async (req, res) => {
-    const { username } = req.user.username
+    const username = req.user.username
 
     const user = await User.findOne({ username: username })
     if (!user) throw new ApiError(400, "user not found")
@@ -110,7 +110,7 @@ const updateVideoDetails = asyncHandler(async (req, res) => {
             }
     }
     if (!title && !description) {
-        throw new ApiError(400, "All fields are requried")
+        throw new ApiError(400, "All fields are required")
     }
     if(!title && description){
         validation(title,description)
