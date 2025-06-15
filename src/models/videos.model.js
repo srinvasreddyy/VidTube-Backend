@@ -3,12 +3,9 @@ import mongoose, { Schema } from "mongoose";
 import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const videoSchema = mongoose.Schema({
-    videoId: {
-        type : String, 
-        required :true,
-        unique :  true,
-        trim : true,
-        lowercase : true
+    title:{
+        type :String,
+        required :true
     },
     videoURL: {
         type : String, //cloudnary url
@@ -31,14 +28,24 @@ const videoSchema = mongoose.Schema({
     },
     views:{
         type : Number,
-        required : true
     },
     likes:{
         type : Number,
-        required : true
     },
     description:{
         type :String,
+        required :true
+    },
+    videoPublicId: {
+        type : String,
+        required :true
+    },
+    ownerAvatar : {
+        type : String,
+        required :true
+    },
+    ownerName : {
+        type : String,
         required :true
     }
 },{

@@ -15,7 +15,7 @@ app.use(express.json({
 }))
 
 app.use(express.urlencoded({
-    limit:"100kb", //data intake should be not more than 100kb from the url
+    limit:"10000kb", //data intake should be not more than 100kb from the url
     extended: true  //handles the complex data 
 }))
 app.use(express.static("public")) //serve extra files from public named directory
@@ -24,8 +24,10 @@ app.use(cookieParser())   //this will handle cookies
 //import router ( in route files we exported as default so we can import any name we want )
 import healthcheckRouter from "./routes/healthcheck.route.js";
 import userRouter from "./routes/user.route.js";
+import videoRouter from "./routes/video.routes.js";
 //routes
 app.use("/api/v1/healthcheck",healthcheckRouter)
 app.use("/api/v1/user",userRouter)
+app.use("/api/v1/video",videoRouter)
 
 export {app}
