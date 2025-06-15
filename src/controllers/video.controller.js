@@ -52,23 +52,18 @@ const getVideos = asyncHandler(async (req, res) => {
     const user = await User.findOne({ username: username })
     if (!user) throw new ApiError(400, "user not found")
 
-    const videos = await User.aggregate([
+    const videos = await Videos.aggregate([
         {
-            $match: { _id: user._id }
-        },
-        {
-            $lookup: {
-                from: "videos",
-                localField: "_id",
-                foreignField: "ownerId",
-                as: "videos"
+            $match: { 
+                _id: user._id,
+                isPublished : true
             }
         }
     ])
 
     return res
         .status(200)
-        .json(new ApiResponse(200, videos[0]?.videos, "Videos Fetched Successfully"))
+        .json(new ApiResponse(200, videos, "Videos Fetched Successfully"))
 
 })
 
@@ -105,7 +100,7 @@ const updateVideoDetails = asyncHandler(async (req, res) => {
             }
             if(description){
                 if (description.length < 20 || description.length > 200) {
-                throw new ApiError(400, "Description should be greater than 20 character and less than 200 characterz")
+                throw new ApiError(400, "Description should be greater than 20 characters and less than 200 characters")
                 }
             }
     }
